@@ -3,7 +3,7 @@ on: workflow_dispatch
 permissions:
   contents: write
 jobs:
-  Release:
+  Test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,3 +18,10 @@ jobs:
         env:
           VAR_USER_NAME: ${{ vars.VAR_USER_NAME }}
           VAR_USER_EMAIL: ${{ vars.VAR_USER_EMAIL }}
+      - name: File
+        run: |
+          echo "${VAR_NPM_USERNAME}:registry=https://registry.npmjs.org/" > testfile
+          echo "registry=https://registry.npmjs.org/" >> testfile
+          cat testfile
+        env:
+          VAR_NPM_USERNAME: ${{ vars.VAR_NPM_USERNAME }}
