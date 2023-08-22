@@ -1,0 +1,20 @@
+name: Test Variables [Manual]
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set Git Config
+        run: |
+          git config --global user.name $VAR_USER_NAME
+          git config --global user.email $VAR_USER_EMAIL
+          git config --global user.name
+          git config --global user.email
+        env:
+          VAR_USER_NAME: ${{ vars.VAR_USER_NAME }}
+          VAR_USER_EMAIL: ${{ vars.VAR_USER_EMAIL }}
